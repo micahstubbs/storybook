@@ -1,3 +1,7 @@
+## fork-4.2.0-alpha.2 (December 14th, 2018)
+
+Remove react-docgen dependency to avoid restrictive license and patents declaration
+
 ## 4.2.0-alpha.1 (December 12, 2018)
 
 Fixes 4.2.0-alpha.0
