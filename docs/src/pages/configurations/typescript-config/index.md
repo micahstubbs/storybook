@@ -13,7 +13,6 @@ This is a central reference for using Storybook with TypeScript.
 yarn add -D typescript
 yarn add -D awesome-typescript-loader
 yarn add -D @types/storybook__react # typings
-yarn add -D @storybook/addon-info react-docgen-typescript-webpack-plugin # optional but recommended
 yarn add -D jest "@types/jest" ts-jest #testing
 ```
 
@@ -25,19 +24,15 @@ We first have to use the [custom Webpack config in full control mode, extending 
 
 ```js
 const path = require('path');
-const TSDocgenPlugin = require('react-docgen-typescript-webpack-plugin');
 module.exports = (baseConfig, env, config) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     loader: require.resolve('awesome-typescript-loader'),
   });
-  config.plugins.push(new TSDocgenPlugin()); // optional
   config.resolve.extensions.push('.ts', '.tsx');
   return config;
 };
 ```
-
-The above example shows a working Webpack config with the TSDocgen plugin also integrated; remove the optional sections if you don't plan on using them.
 
 ### `tsconfig.json`
 
@@ -120,28 +115,7 @@ function loadStories() {
 configure(loadStories, module);
 ```
 
-## Using TypeScript with the TSDocgen addon
-
-The very handy [Storybook Info addon](https://github.com/storybooks/storybook/tree/master/addons/info) autogenerates prop tables documentation for each component, however it doesn't work with Typescript types. The current solution is to use [react-docgen-typescript-loader](https://github.com/strothj/react-docgen-typescript-loader) to preprocess the TypeScript files to give the Info addon what it needs. The webpack config above does this, and so for the rest of your stories you use it as per normal:
-
-```js
-import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import TicTacToeCell from './TicTacToeCell';
-
-const stories = storiesOf('Components', module);
-
-stories.add(
-  'TicTacToeCell',
-  () => <TicTacToeCell value="X" position={{ x: 0, y: 0 }} onClick={action('onClick')} />,
-  { info: { inline: true } }
-);
-```
-
 ## Customizing Type annotations/descriptions
-
-Please refer to the [react-docgen-typescript-loader](https://github.com/strothj/react-docgen-typescript-loader) docs for writing prop descriptions and other annotations to your Typescript interfaces.
 
 Additional annotation can be achieved by setting a default set of info parameters:
 

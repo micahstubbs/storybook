@@ -33,7 +33,6 @@
     "@storybook/node-logger": "4.2.0-alpha.1",
     "@svgr/webpack": "^4.0.3",
     "babel-plugin-named-asset-import": "^0.2.3",
-    "babel-plugin-react-docgen": "^2.0.0",
     "babel-preset-react-app": "^6.1.0",
     "common-tags": "^1.8.0",
     "core-js": "^2.5.7",
