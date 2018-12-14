@@ -333,45 +333,8 @@ storiesOf('Button', module).add('with text', () => <Button>Hello Button</Button>
     TableComponent,
   },
 });
+
 ```
-
-### React Docgen Integration
-
-React Docgen is included as part of the @storybook/react package through the use of `babel-plugin-react-docgen` during babel compile time.
-When rendering a story with a React component commented in this supported format, the Addon Info description will render the comments above the component declaration and the prop table will display the prop's comment in the description column.
-
-```js
-import React from 'react';
-import PropTypes from 'prop-types';
-
-/** Button component description */
-const DocgenButton = ({ disabled, label, style, onClick }) => (
-  <button disabled={disabled} style={style} onClick={onClick}>
-    {label}
-  </button>
-);
-
-DocgenButton.defaultProps = {
-  disabled: false,
-  onClick: () => {},
-  style: {},
-};
-
-DocgenButton.propTypes = {
-  /** Boolean indicating whether the button should render as disabled */
-  disabled: PropTypes.bool,
-  /** button label. */
-  label: PropTypes.string.isRequired,
-  /** onClick handler */
-  onClick: PropTypes.func,
-  /** component styles */
-  style: PropTypes.shape,
-};
-
-export default DocgenButton;
-```
-
-Comments above flow types are also supported. Storybook Info Addon should now render all the correct types for your component if the PropTypes are in the same file as the React component.
 
 ## The FAQ
 
